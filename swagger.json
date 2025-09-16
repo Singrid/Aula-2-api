@@ -1,0 +1,105 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Transferências",
+    "version": "1.0.0",
+    "description": "API para login, registro, consulta de usuários e transferências."
+  },
+  "paths": {
+    "/users/register": {
+      "post": {
+        "summary": "Registrar novo usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegister"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Usuário registrado" },
+          "400": { "description": "Usuário já existe" }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "summary": "Login de usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login realizado" },
+          "400": { "description": "Credenciais inválidas" }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Consultar usuários",
+        "responses": {
+          "200": { "description": "Lista de usuários" }
+        }
+      }
+    },
+    "/transfer": {
+      "post": {
+        "summary": "Realizar transferência",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Transfer"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Transferência realizada" },
+          "400": { "description": "Transferência não permitida" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserRegister": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" },
+          "favorecido": { "type": "boolean" }
+        },
+        "required": ["username", "password"]
+      },
+      "UserLogin": {
+        "type": "object",
+        "properties": {
+          "username": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["username", "password"]
+      },
+      "Transfer": {
+        "type": "object",
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "amount": { "type": "number" }
+        },
+        "required": ["from", "to", "amount"]
+      }
+    }
+  }
+}
