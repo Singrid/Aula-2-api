@@ -9,6 +9,6 @@
   }
   ,
   "scripts": {
-    "test": "mocha \"test/controller/*.js\" --timeout 10000"
+    "test": "mocha test/controller/*.js --timeout 10000"
   }
 }
