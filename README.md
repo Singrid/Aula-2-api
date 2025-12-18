@@ -40,3 +40,30 @@ Para testar com Supertest, importe o `app.js` sem o método `listen()`.
 ## Observações
 - O banco de dados é em memória, os dados são perdidos ao reiniciar.
 - Para transferências acima de R$ 5.000,00, o destinatário deve ser favorecido (`favorecido: true`).
+
+# Trabalho de Conclusão da Disciplina de Automação de Testes de Performance
+
+## Conceitos a serem Empregados
+
+### Thresholds
+Esse conceito pode ser visto no arquivo `transfer.test.js` no seguinte trecho de código
+
+thresholds: {
+    // percentil 95 deve ser menor que 2000ms
+    'http_req_duration': ['p(95)<2000'],
+  }, 
+
+### Checks
+Esse conceito pode ser visto em alguns lugares desse teste, um deles é no arquivo `utils.js`, na verificação se um usuário foi registrado com sucesso no seguinte trecho do código
+
+// Register a user. Checks that status is 201 (created).
+export function registerUser(username, password, favorecido = false) {
+  const url = `${getBaseUrl()}/users/register`;
+  const payload = JSON.stringify({ username, password, favorecido });
+  const params = { headers: { 'Content-Type': 'application/json' } };
+  const res = http.post(url, payload, params);
+  check(res, {
+    'register status is 201': (r) => r.status === 201,
+  });
+  return res;
+}
