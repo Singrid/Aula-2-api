@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "from": "alice_test",
+      "to": "bob_test",
+      "password": "Pass@1234",
+      "amount": 100
+    },
+    {
+      "from": "john_test",
+      "to": "mary_test",
+      "password": "Pass@1234",
+      "amount": 2500
+    },
+    {
+      "from": "user_a",
+      "to": "user_b",
+      "password": "Pass@1234",
+      "amount": 50
+    }
+  ]
+}
