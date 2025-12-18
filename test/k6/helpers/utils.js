@@ -3,7 +3,7 @@ import { check } from 'k6';
 import { getBaseUrl } from './getBaseUrl.js';
 import faker from 'k6/x/faker';
 
-// Generate a random email/username for user registration
+// Generate a random username for user registration
 export function randomName() {
   const id = Math.random().toString(36).substring(2, 10);
   return faker.person.firstName() + id;
