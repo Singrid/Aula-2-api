@@ -34,12 +34,7 @@ Esta API permite login, registro de usuário, consulta de usuários e transferê
 - `POST /transfer` - Transferência de valores
 - `GET /api-docs` - Documentação Swagger
 
-## Testes
-Para testar com Supertest, importe o `app.js` sem o método `listen()`.
-
-## Observações
-- O banco de dados é em memória, os dados são perdidos ao reiniciar.
-- Para transferências acima de R$ 5.000,00, o destinatário deve ser favorecido (`favorecido: true`).
+  
 
 # Trabalho de Conclusão da Disciplina de Automação de Testes de Performance
 
@@ -56,14 +51,14 @@ thresholds: {
 ### Checks
 Esse conceito pode ser visto em alguns lugares desse teste, um deles é no arquivo `utils.js`, na verificação se um usuário foi registrado com sucesso no seguinte trecho do código
 
-// Register a user. Checks that status is 201 (created).
-export function registerUser(username, password, favorecido = false) {
-  const url = `${getBaseUrl()}/users/register`;
-  const payload = JSON.stringify({ username, password, favorecido });
-  const params = { headers: { 'Content-Type': 'application/json' } };
-  const res = http.post(url, payload, params);
-  check(res, {
-    'register status is 201': (r) => r.status === 201,
-  });
-  return res;
-}
+// Register a user. Checks that status is 201 (created).  
+export function registerUser(username, password, favorecido = false) {  
+  const url = `${getBaseUrl()}/users/register`;  
+  const payload = JSON.stringify({ username, password, favorecido });  
+  const params = { headers: { 'Content-Type': 'application/json' } };  
+  const res = http.post(url, payload, params);  
+  check(res, {  
+    'register status is 201': (r) => r.status === 201,  
+  });  
+  return res;  
+}  
